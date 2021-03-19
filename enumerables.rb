@@ -78,4 +78,42 @@ module Enumerable
     end
     to_enum
   end
+
+  def my_inject(*args)
+    array = to_a
+
+    return my_inject_with_block(array, args) if block_given?
+
+    raise LocalJumpError, 'no block given' if args.empty?
+
+    memo = args.size == 2 ? args[0] : array[0]
+    sym = args.size == 2 ? args[1] : args[0]
+    index = args.size == 2 ? 0 : 1
+
+    (index...array.size).my_each { |idx| memo = memo.send(sym, array[idx]) }
+
+    memo
+  end
+
+  private
+
+  def match_pattern(item, pattern)
+    return true if item == pattern || item =~ pattern
+
+    begin
+      return true if item.is_a?(pattern)
+    rescue TypeError
+      return false
+    end
+    false
+  end
+
+  def my_inject_with_block(array, args)
+    memo = args.empty? ? array[0] : args[0]
+    index = args.empty? ? 1 : 0
+
+    (index...array.size).my_each { |idx| memo = yield(memo, array[idx]) }
+
+    memo
+  end
 end
