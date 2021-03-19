@@ -44,4 +44,17 @@ module Enumerable
     my_each { |item| return true if item }
     false
   end
+
+  def my_none?(pattern = nil)
+    if block_given?
+      my_each { |value| return false if yield(value) }
+      return true
+    end
+    unless pattern.nil?
+      my_each { |value| return false if match_pattern(value, pattern) }
+      return true
+    end
+    my_each { |_value| return false if item }
+    true
+  end
 end
