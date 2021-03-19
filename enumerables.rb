@@ -71,10 +71,10 @@ module Enumerable
   end
 
   def my_map
-    if block_given?
+    if !proc.nil
       new_array = []
-      my_each { |value| new_array << yield(value) }
-      return new_array
+      my_each { |value| new_array << proc.call(value) }
+      new_array
     end
     to_enum
   end
@@ -84,7 +84,7 @@ module Enumerable
 
     return my_inject_with_block(array, args) if block_given?
 
-    raise LocalJumpError, 'no block given' if args.empty?
+    raise LocalJumpError, "no block given" if args.empty?
 
     memo = args.size == 2 ? args[0] : array[0]
     sym = args.size == 2 ? args[1] : args[0]
