@@ -18,4 +18,17 @@ module Enumerable
     my_each { |item| result << item if yield item }
     result
   end
+
+  def my_all(pattern = nil)
+    if block_given?
+      my_each { |value| return false unless yield(value) }
+      return true
+    end
+    unless pattern.nil
+      my_each { |value| return false unless match_pattern(value, pattern) }
+      return true
+    end
+    my_each { |value| return false unless value }
+    true
+  end
 end
