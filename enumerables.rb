@@ -12,4 +12,10 @@ module Enumerable
       index += 1
     end
   end
+
+  def my_select
+    result = []
+    my_each { |item| result << item if yield item }
+    result
+  end
 end
