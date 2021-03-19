@@ -83,7 +83,7 @@ module Enumerable
   def my_inject(*args)
     array = to_a
 
-    return my_inject_with_block(array, args) { |memo, item| yield(memo, item) } if block_given?
+    return(my_inject_with_block(array, args) { |memo, item| yield(memo, item) }) if block_given?
 
     raise LocalJumpError, 'no block given' if args.empty?
 
