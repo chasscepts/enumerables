@@ -6,11 +6,9 @@ module Enumerable
   end
 
   def my_each_with_index
-    index = 0
-    my_each do |value|
-      yield(value, index)
-      index += 1
-    end
+    array = to_a
+    array.size.times { |index| yield(array[index], index) }
+    array
   end
 
   def my_select
@@ -19,7 +17,7 @@ module Enumerable
     result
   end
 
-  def my_all(pattern = nil)
+  def my_all?(pattern = nil)
     if block_given?
       my_each { |value| return false unless yield(value) }
       return true
@@ -71,12 +69,11 @@ module Enumerable
   end
 
   def my_map(proc = nil)
+    new_array = []
     if !proc.nil
-      new_array = []
       my_each { |value| new_array << proc.call(value) }
       new_array
     elsif block_given?
-      new_array = []
       my_each { |value| new_array << yield(value) }
       new_array
     else
@@ -89,7 +86,7 @@ module Enumerable
 
     return my_inject_with_block(array, args) if block_given?
 
-    raise LocalJumpError, "no block given" if args.empty?
+    raise LocalJumpError, 'no block given' if args.empty?
 
     memo = args.size == 2 ? args[0] : array[0]
     sym = args.size == 2 ? args[1] : args[0]
