@@ -57,4 +57,16 @@ module Enumerable
     my_each { |_value| return false if item }
     true
   end
+
+  def my_count(item = nil)
+    items_count = 0
+    if !item.nil?
+      my_each { items_count += 1 if value == item }
+    elsif block_given?
+      my_each { items_count += 1 if yield(value) }
+    else
+      my_each { items_count += 1 }
+    end
+    items_count
+  end
 end
