@@ -4,4 +4,12 @@ module Enumerable
     array.size.times { |index| yield array[index] }
     array
   end
+
+  def my_each_with_index
+    index = 0
+    my_each do |value|
+      yield(value, index)
+      index += 1
+    end
+  end
 end
