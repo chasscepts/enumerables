@@ -31,4 +31,17 @@ module Enumerable
     my_each { |value| return false unless value }
     true
   end
+
+  def my_any?(pattern = nil)
+    if block_given?
+      my_each { |item| return true if yield(item) }
+      return false
+    end
+    unless pattern.nil?
+      my_each { |item| return true if match_pattern(item, pattern) }
+      return false
+    end
+    my_each { |item| return true if item }
+    false
+  end
 end
