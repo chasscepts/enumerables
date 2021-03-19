@@ -57,4 +57,13 @@ module Enumerable
     my_each { |_value| return false if item }
     true
   end
+
+  def my_map
+    if block_given?
+      new_array = []
+      my_each { |value| new_array << yield(value) }
+      return new_array
+    end
+    to_enum
+  end
 end
