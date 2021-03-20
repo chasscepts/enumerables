@@ -21,7 +21,7 @@ module Enumerable
     if block_given?
       result = []
       my_each { |item| result << item if yield item }
-      result
+      return result
     end
     to_enum
   end
@@ -37,7 +37,7 @@ module Enumerable
     true
   end
 
-  def my_any?(pattern = nil)
+  def my_any?(pattern = nil, &block)
     if block_given? || pattern.nil?
       helper = block_given? ? block : proc { |value| value }
       my_each { |value| return true if helper.call(value) }
