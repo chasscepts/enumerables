@@ -86,4 +86,19 @@ describe Enumerable do
       expect(array.my_none?(/d/)).to eql(false)
     end
   end
+  describe "#my_count" do
+    it "count items in the array" do
+      array = [1, 2, 2, 4]
+      expect(array.my_count).to eql(4)
+    end
+
+    it "count items equal to 2" do
+      array = [1, 2, 2, 4]
+      expect(array.my_count(2)).to eql(2)
+    end
+    it "count items greater than 1" do
+      array = [1, 2, 2, 4]
+      expect(array.my_count { |item| item > 1 }).to eql(3)
+    end
+  end
 end
