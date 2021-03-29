@@ -64,4 +64,26 @@ describe Enumerable do
       expect(array.my_any?(/d/)).to eql(true)
     end
   end
+
+  describe "#my_none?" do
+    it "return true if none of the items are greater than 3" do
+      array = [1, 2, 3]
+      expect(array.my_none? { |item| item > 3 }).to eql(true)
+    end
+
+    it "returns false if any of the items are greater than 2" do
+      array = [1, 2, 3]
+      expect(array.my_none? { |item| item > 2 }).to eql(false)
+    end
+
+    it "returns false if any of the items are Numerics" do
+      array = [1, 2, 3, "a", "j"]
+      expect(array.my_none?(Numeric)).to eql(false)
+    end
+
+    it "returns false if any of the items contain the letter 'd'" do
+      array = ["jordy", "addis", "hanna"]
+      expect(array.my_none?(/d/)).to eql(false)
+    end
+  end
 end
