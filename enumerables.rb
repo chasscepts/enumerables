@@ -85,7 +85,7 @@ module Enumerable
 
     return my_inject_with_block(array, args, block) if block_given?
 
-    raise LocalJumpError, 'no block given' if args.empty?
+    raise LocalJumpError, "no block given" if args.empty?
 
     memo = args.size == 2 ? args[0] : array[0]
     sym = args.size == 2 ? args[1] : args[0]
@@ -94,6 +94,10 @@ module Enumerable
     (index...array.size).my_each { |idx| memo = memo.send(sym, array[idx]) }
 
     memo
+  end
+
+  def multiply_els(array)
+    array.my_inject(:*)
   end
 
   private
@@ -120,8 +124,4 @@ module Enumerable
     my_each { |value| new_array << block_or_proc.call(value) }
     new_array
   end
-end
-
-def multiply_els(array)
-  array.my_inject(:*)
 end

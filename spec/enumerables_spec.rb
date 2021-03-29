@@ -102,16 +102,31 @@ describe Enumerable do
     end
   end
 
-  describe "#my_map"do
-    it "add 2 to all items"do
-    array = [1, 2, 2, 4]
-    expect(array.my_map { |item| item += 2 }).to eql([3, 4, 4, 6])
+  describe "#my_map" do
+    it "add 2 to all items" do
+      array = [1, 2, 2, 4]
+      expect(array.my_map { |item| item += 2 }).to eql([3, 4, 4, 6])
     end
 
-    it "add 3 to all items using proc"do
-    array = [1, 2, 2, 4]
-    my_proc = proc {|item| item += 3}
-    expect(array.my_map(my_proc)).to eql([4, 5, 5, 7])
+    it "add 3 to all items using proc" do
+      array = [1, 2, 2, 4]
+      my_proc = proc { |item| item += 3 }
+      expect(array.my_map(my_proc)).to eql([4, 5, 5, 7])
+    end
+  end
+
+  describe "#my_inject" do
+    it "it returns the sum of all items" do
+      array = [1, 2, 3, 4]
+      expect(array.my_inject { |sum, item| sum + item }).to eql(10)
+    end
+    it "it returns the sum of the array with the given value" do
+      array = [1, 2, 3, 4]
+      expect(array.my_inject(10) { |sum, item| sum + item }).to eql(20)
+    end
+    it "returns the sum of the array using the given symbol" do
+      array = [1, 2, 3, 4]
+      expect(array.my_inject(:+)).to eql(10)
     end
   end
 end
