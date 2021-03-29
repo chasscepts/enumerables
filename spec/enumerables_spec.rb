@@ -10,9 +10,14 @@ describe Enumerable do
 
   describe "#my_each_with_index" do
     it "puts every item with the index" do
-      array = ["jordy","addis","hanna"]
-      expect(array.my_each_with_index{|item,index| puts "#{index+1}. #{item}"}).to eql(["jordy", "addis", "hanna"]
-      )
+      array = ["jordy", "addis", "hanna"]
+      expect(array.my_each_with_index { |item, index| puts "#{index + 1}. #{item}" }).to eql(["jordy", "addis", "hanna"])
+    end
+  end
+  describe "#my_select" do
+    it "puts selected item greater than two" do
+      array = [1, 2, 3]
+      expect(array.my_select { |item| item > 2 }).to eql([3])
     end
   end
 end
