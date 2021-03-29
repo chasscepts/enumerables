@@ -101,4 +101,17 @@ describe Enumerable do
       expect(array.my_count { |item| item > 1 }).to eql(3)
     end
   end
+
+  describe "#my_map"do
+    it "add 2 to all items"do
+    array = [1, 2, 2, 4]
+    expect(array.my_map { |item| item += 2 }).to eql([3, 4, 4, 6])
+    end
+
+    it "add 3 to all items using proc"do
+    array = [1, 2, 2, 4]
+    my_proc = proc {|item| item += 3}
+    expect(array.my_map(my_proc)).to eql([4, 5, 5, 7])
+    end
+  end
 end
