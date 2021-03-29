@@ -36,6 +36,18 @@ To get a local copy up and running follow these simple example steps.
 - Git
 - Github
 
+### To Use Rspec
+
+To use the Rspec please copy the repository and run the following commands on your terminal:
+
+```
+$ cd <folder>
+```
+
+```
+$ rspec
+```
+
 ### Linters
 
 Install some dependencies by running the following command
@@ -56,6 +68,11 @@ Install some dependencies by running the following command
 - GitHub: [@chasscepts](https://github.com/chasscepts)
 - Twitter: [@ofChass](https://twitter.com/ofChass)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/francis-obetta-4033b71bb/)
+
+👤 **Author3**
+
+- Github: [![](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/garciajordy/)
+- Linkedin: [![](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jordy-garcia-675849206/)
 
 ## 🤝 Contributing
 

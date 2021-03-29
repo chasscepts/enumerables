@@ -129,4 +129,11 @@ describe Enumerable do
       expect(array.my_inject(:+)).to eql(10)
     end
   end
+
+  describe "#multiply_els" do
+    it "returns product of all items in array" do
+      array = [1, 2, 3, 4, 5]
+      expect(array.multiply_els(array)).to eql(120)
+    end
+  end
 end
