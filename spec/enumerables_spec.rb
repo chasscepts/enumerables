@@ -23,25 +23,45 @@ describe Enumerable do
   end
 
   describe "#my_all?" do
-    it "return false if not all items are greater than 3"do
-    array = [1, 2, 3]
-    expect(array.my_all? { |item| item > 3 }).to eql(false)
-  end
+    it "return false if not all items are greater than 3" do
+      array = [1, 2, 3]
+      expect(array.my_all? { |item| item > 3 }).to eql(false)
+    end
 
-  it "returns true if all items are greater than 0"do
-  array = [1, 2, 3]
-  expect(array.my_all? { |item| item > 0 }).to eql(true)
-  end
+    it "returns true if all items are greater than 0" do
+      array = [1, 2, 3]
+      expect(array.my_all? { |item| item > 0 }).to eql(true)
+    end
 
-  it "returns true if all items are Numerics"do
-  array = [1, 2, 3]
-  expect(array.my_all?(Numeric)).to eql(true)
-  end
+    it "returns true if all items are Numerics" do
+      array = [1, 2, 3]
+      expect(array.my_all?(Numeric)).to eql(true)
+    end
 
-  it "returns true if all items contain the letter 'd'"do
-  array = ["jordy", "addis", "hannad"]
-  expect(array.my_all?(/d/)).to eql(true)
+    it "returns true if all items contain the letter 'd'" do
+      array = ["jordy", "addis", "hannad"]
+      expect(array.my_all?(/d/)).to eql(true)
+    end
   end
-  end
+  describe "#my_any?" do
+    it "return false if any of the items are greater than 3" do
+      array = [1, 2, 3]
+      expect(array.my_any? { |item| item > 3 }).to eql(false)
+    end
 
+    it "returns true if any of the items are greater than 2" do
+      array = [1, 2, 3]
+      expect(array.my_any? { |item| item > 2 }).to eql(true)
+    end
+
+    it "returns true if any of the items are Numerics" do
+      array = [1, 2, 3, "a", "j"]
+      expect(array.my_any?(Numeric)).to eql(true)
+    end
+
+    it "returns true if any of the items contain the letter 'd'" do
+      array = ["jordy", "addis", "hanna"]
+      expect(array.my_any?(/d/)).to eql(true)
+    end
+  end
 end
